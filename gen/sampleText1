@@ -1,0 +1,40 @@
+event{
+    name{"Bob's Barbecue"}
+    description{"BYOB, Bring a swimsuit for the hot tub!"}
+    location{"Bob's House"}
+}
+
+plan {
+    attendee{
+        name{"Maria"}
+        allergy{Sesame}
+
+        available {
+            {march 16 2018 from 12:00 to 20:00}
+            {march 15 2018 from 19:00 to 21:00}
+        }
+    }
+    attendee{
+        name{"Bob"}
+        diet{vegetarian}
+
+        unavailable {
+            {march 30 2018 from 18:00 to 19:00}
+            {march 15 2018 from 18:00 to 20:00}
+        }
+    }
+    attendee{
+        name{"John"}
+
+        unavailable{
+            {march 17 2018 from 12:00 to 19:00}
+            {march 14 2018 from 14:00 to 22:00}
+        }
+    }
+}
+
+recipe(5){
+    ingredients{"lettuce", "onion", "tomato", "garlic"}
+    cuisine{Italian}
+    type{main course}
+}

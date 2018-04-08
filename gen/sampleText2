@@ -1,0 +1,27 @@
+event{
+    name{"Paul's Party"}
+    date{May 20 2018}
+    description{"We are planning to go to the beach at some point."}
+    location{"Paul's House"}
+    from{18:00 to 24:00}
+}
+
+plan {
+    attendee{
+        name{"Paul"}
+        allergy{Peanuts}
+    }
+    attendee{
+        name{"Michael"}
+
+    }
+    attendee{
+            name{"John"}
+
+    }
+}
+
+recipe(5){
+    ingredients{"sugar", "wheat", "chocolate"}
+    type{dessert}
+}
