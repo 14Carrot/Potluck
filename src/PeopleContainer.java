@@ -104,35 +104,49 @@ public class PeopleContainer {
             arr.add(temp.clone());
             d = overlap_dates.get(i);
             if (s.getCalendar_s().get(Calendar.DAY_OF_YEAR) == d.getCalendar_s().get(Calendar.DAY_OF_YEAR)) {
-                arr.get(arr.size()-1)[0] = "" + month[(s.getMonth()-1)].substring(0, 1).toUpperCase() + month[(s.getMonth()-1)].substring(1) + " " + s.getDay() + " " + s.getYear();
-                //System.out.println(temp[0]);
-                arr.get(arr.size()-1)[1] = "" + "<br />" + "&emsp;&emsp;" + time_toString(s.getS_hour()) + ':' + time_toString(s.getS_min()) + " to " + time_toString(s.getE_hour()) + ':' + time_toString(s.getE_min());
-                //System.out.println(temp[1]);
+                if(s.getS_hour() != s.getE_hour()) {
+                    if(s.getS_min() != s.getE_min()) {
+                        arr.get(arr.size()-1)[0] = "" + month[(s.getMonth()-1)].substring(0, 1).toUpperCase() + month[(s.getMonth()-1)].substring(1) + " " + s.getDay() + " " + s.getYear();
+                        //System.out.println(temp[0]);
+                        arr.get(arr.size()-1)[1] = "" + "<br />" + "&emsp;&emsp;" + time_toString(s.getS_hour()) + ':' + time_toString(s.getS_min()) + " to " + time_toString(s.getE_hour()) + ':' + time_toString(s.getE_min());
+                        //System.out.println(temp[1]);
+                    }
+                }
                 while((s.getCalendar_s().get(Calendar.DAY_OF_YEAR) == d.getCalendar_s().get(Calendar.DAY_OF_YEAR)) && (i < overlap_dates.size())) {
-                    arr.get(arr.size()-1)[1] = arr.get(arr.size()-1)[1] + "<br />" + "&emsp;&emsp;" + time_toString(d.getS_hour()) + ':' + time_toString(d.getS_min()) + " to " + time_toString(d.getE_hour()) + ':' + time_toString(d.getE_min());
-                    //System.out.println(temp[1]);
+                    if(d.getS_hour() != d.getE_hour()) {
+                        if(s.getS_min() != s.getE_min()) {
+                            arr.get(arr.size()-1)[1] = arr.get(arr.size()-1)[1] + "<br />" + "&emsp;&emsp;" + time_toString(d.getS_hour()) + ':' + time_toString(d.getS_min()) + " to " + time_toString(d.getE_hour()) + ':' + time_toString(d.getE_min());
+                            //System.out.println(temp[1]);
+                        }
+                    }
                     s = overlap_dates.get(i);
                     i++;
                 }
 
             }
             else {
-                arr.get(arr.size()-1)[0] = ""  + month[(s.getMonth()-1)].substring(0, 1).toUpperCase() + month[(s.getMonth()-1)].substring(1) + " " + s.getDay() + " " + s.getYear();
-                //System.out.println(temp[0]);
-                arr.get(arr.size()-1)[1] = "" + "<br />" + "&emsp;&emsp;" + time_toString(s.getS_hour()) + ':' + time_toString(s.getS_min()) + " to " + time_toString(s.getE_hour()) + ':' + time_toString(s.getE_min());
-                //System.out.println(temp[1]);
-
+                if(s.getS_hour() != s.getE_hour()) {
+                    if(s.getS_min() != s.getE_min()) {
+                        arr.get(arr.size()-1)[0] = ""  + month[(s.getMonth()-1)].substring(0, 1).toUpperCase() + month[(s.getMonth()-1)].substring(1) + " " + s.getDay() + " " + s.getYear();
+                        //System.out.println(temp[0]);
+                        arr.get(arr.size()-1)[1] = "" + "<br />" + "&emsp;&emsp;" + time_toString(s.getS_hour()) + ':' + time_toString(s.getS_min()) + " to " + time_toString(s.getE_hour()) + ':' + time_toString(s.getE_min());
+                        //System.out.println(temp[1]);
+                    }
+                }
                 s = overlap_dates.get(i);
                 i++;
             }
         }
         arr.add(temp.clone());
-        arr.get(arr.size()-1)[0] = ""  + month[(s.getMonth()-1)].substring(0, 1).toUpperCase() + month[(s.getMonth()-1)].substring(1) + " " + s.getDay() + " " + s.getYear();
-        //System.out.println(temp[0]);
+        if(s.getS_hour() != s.getE_hour()) {
+            if (s.getS_min() != s.getE_min()) {
+                arr.get(arr.size()-1)[0] = ""  + month[(s.getMonth()-1)].substring(0, 1).toUpperCase() + month[(s.getMonth()-1)].substring(1) + " " + s.getDay() + " " + s.getYear();
+                //System.out.println(temp[0]);
 
-        arr.get(arr.size()-1)[1] = "" + "<br />" + "&emsp;&emsp;" + time_toString(s.getS_hour()) + ':' + time_toString(s.getS_min()) + " to " + time_toString(s.getE_hour()) + ':' + time_toString(s.getE_min());
+                arr.get(arr.size()-1)[1] = "" + "<br />" + "&emsp;&emsp;" + time_toString(s.getS_hour()) + ':' + time_toString(s.getS_min()) + " to " + time_toString(s.getE_hour()) + ':' + time_toString(s.getE_min());
 
-
+            }
+        }
 
         return arr;
     }
