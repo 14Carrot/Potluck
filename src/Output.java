@@ -1,9 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Arrays;
 
 public class Output{
 
@@ -64,7 +62,7 @@ public class Output{
                 "</body>\n" +
                 "</html>" +
                 "";
-        String str = Top + Style + Body + eventStr(eventDict) + attendeeStr() + availabilityStr(monthStr) + resipieStr(rescipeArr, recipeDict) + End;
+        String str = "" + Top + Style + Body + eventStr(eventDict) + attendeeStr() + availabilityStr(monthStr) + resipieStr(rescipeArr, recipeDict) + End;
         writeFile("Potluckr", str);
     }
 
@@ -154,6 +152,7 @@ public class Output{
         }else{return "";}
     }
     public static String availabilityStr(String[] monthStr) {
+        PeopleContainer.init_dates();
         if(! PeopleContainer.dates.isEmpty()) {
             ArrayList<String[]> array = PeopleContainer.DatetoArrayString(monthStr);
             int size = array.size();

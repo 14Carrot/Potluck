@@ -30,7 +30,7 @@ public class PeopleContainer {
     public static ArrayList<PDate> schedule() {
         ArrayList<PDate> A = new ArrayList<>();
         int num_ppl = PeopleList.size();
-
+        System.out.println(PeopleList.size());
         Collections.sort(dates, new DateSortByMonth());
 
         DateSortByMonth comp = new DateSortByMonth();
@@ -40,7 +40,6 @@ public class PeopleContainer {
         PDate temp;
 
         while(i < dates.size()) {
-            DateSortByHourEnd comp_hour_end = new DateSortByHourEnd();
             // error is here
             if(A.isEmpty()) {
                 A.add(dates.get(i));
@@ -48,12 +47,14 @@ public class PeopleContainer {
                 num_sets = 1;
             }
             else {
-                if (dates.get(i).overlap(A.get(A.size() - 1))) {
+                if (A.get(A.size() - 1).overlap(dates.get(i))) {
                     temp = new PDate(dates.get(i).getMonth(), dates.get(i).getDay(), dates.get(i).getS_hour(), dates.get(i).getS_min(), A.get(A.size() - 1).getE_hour(), A.get(A.size() - 1).getE_min(), false, A.get(A.size() - 1).getYear());
                     A.add(temp);
                     num_sets++;
+                    System.out.println(overlap_dates.size());
                     if (num_ppl == num_sets) {
                         overlap_dates.add(A.get(A.size() - 1));
+                        System.out.println(overlap_dates.size());
                         //i ++;
                         if (i < dates.size()) {
                             A.add(dates.get(i));
@@ -68,9 +69,12 @@ public class PeopleContainer {
                     num_sets = 1;
                     A.add(dates.get(i));
                 }
+                i++;
             }
+
         }
         Collections.sort(overlap_dates, new DateSortByMonth());
+
         return overlap_dates;
     }
 
@@ -90,7 +94,6 @@ public class PeopleContainer {
     }
 
     public static ArrayList<String[]> DatetoArrayString(String[] month) {
-        init_dates();
         schedule();
         ArrayList<String[]> arr = new ArrayList<>();
         String[] temp = new String[2];
