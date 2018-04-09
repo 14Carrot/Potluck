@@ -12,6 +12,7 @@ public class API {
     public static String[][] makeArray(Map<String, String> recipeDict, int[] dietInt, String[] dietStr){
         //$myAPI.makeArray(recipeDict, dietInt, dietStr)
         int max = 1;
+        System.out.println("dose this work - Matt");
         ArrayList chooseDiet = new ArrayList();
         for (int i = 0; i < dietInt.length; i++){
             if (dietInt[i] > max) {
