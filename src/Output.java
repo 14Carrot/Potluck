@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Output{
 
 
-    public static void writeFile(String[][] rescipeArr, Map<String, String> recipeDict, Map<String, String> eventDict, String[] monthStr){
+    public static void writeHTML(String[][] rescipeArr, Map<String, String> recipeDict, Map<String, String> eventDict, String[] monthStr){
 
         String name = "Potluckr";
         if (eventDict.containsKey("Subject")) {

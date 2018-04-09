@@ -78,7 +78,6 @@ public class API {
         }
 
         site += offset;
-
         return site;
     }
 

@@ -64,7 +64,8 @@ prog locals[API myAPI = new API(),
         $csvCleanerInit.clean(csvDict);
     }
     recipeDict.put("diet", "vegetarian");
-    $myOutput.writeFile(rescipeArr, recipeDict, csvDict, monthStr);
+    $myOutput.writeHTML(rescipeArr, recipeDict, csvDict, monthStr);
+
     }
     ;
 //option to set private for google csv output
@@ -96,7 +97,7 @@ date locals[String dateStr="";]
     :
 DATE '{'
     k=MONTH
-    l=DAY
+    l=NUM
     m=YEAR'}'
     { try
     {$dateStr = $l.text + " " +$k.text + " " + $m.text;
@@ -205,7 +206,7 @@ availability locals[String avail = ""]
 
 pdate locals[String mo = "", String da = "", String ye = "", String st = "", String et = "", String t =""]
    : ('{' ( m = MONTH {$mo = ($m.text.replaceAll("[^A-Za-z0-9]", ""));}
-   d = DAY {$da = ($d.text.replaceAll("[^A-Za-z0-9]", ""));}
+   d = NUM {$da = ($d.text.replaceAll("[^A-Za-z0-9]", ""));}
    y = YEAR {$ye = ($y.text.replaceAll("[^A-Za-z0-9]", ""));}
    FROM s = TIME {$st = ($s.text.replaceAll("[^A-Za-z0-9]", ""));} TO
    e = TIME {$et = ($e.text.replaceAll("[^A-Za-z0-9]", ""));})
@@ -245,7 +246,7 @@ pdate locals[String mo = "", String da = "", String ye = "", String st = "", Str
 //Plan for Recipe, basic 'what's in your fridge'
 //figure out how to "pass" this value up to the top (to "prog" rule or w/e.. do we even have to?)
 recipe
-    : RECIPE ('(' r = DAY ')' {recipeDict.put("number", $r.text); inRecipe = true;})?
+    : RECIPE ('(' r = NUM ')' {recipeDict.put("number", $r.text); inRecipe = true;})?
     '{' (ingredients | cuisine | type | allergy | diet)+ '}'
     {inRecipe = false;}
     ;
@@ -296,7 +297,7 @@ ATTENDEE: 'attendee';
 UNAVAILABLE : 'unavailable';
 AVAILABLE : 'available';
 INGREDIENTS : 'ingredients';
-DAY : ([0-3][0-9] | [1-9]);
+NUM : ([0-3][0-9] | [1-9]);
 //add colon in middle if you wish for "24 hour military time"
 TIME : [0-2][0-9]':'[0-5][0-9];
 YEAR : [2][0][1-9][0-9];
