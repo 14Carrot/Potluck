@@ -2,6 +2,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -10,7 +11,8 @@ public class API {
 
     public static String[][] makeArray(Map<String, String> recipeDict, int[] dietInt, String[] dietStr){
         //$myAPI.makeArray(recipeDict, dietInt, dietStr)
-        int max = 0;
+        int max = 1;
+        System.out.println(Arrays.toString(dietInt));
         ArrayList chooseDiet = new ArrayList();
         for (int i = 0; i < dietInt.length; i++){
             if (dietInt[i] > max) {
@@ -21,7 +23,9 @@ public class API {
                 chooseDiet.add(i);
             }
         }
-        recipeDict.put("diet", dietStr[(int) chooseDiet.get(0)].replace(" ", "+")); //takes the most specific diet
+        if(! chooseDiet.isEmpty()) {
+            recipeDict.put("diet", dietStr[(int) chooseDiet.get(0)].replace(" ", "+")); //takes the most specific diet
+        }
         String site = getSite(recipeDict);
         String[][] arr;
         try {
