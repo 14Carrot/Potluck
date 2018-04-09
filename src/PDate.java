@@ -108,12 +108,13 @@ public class PDate {
             if (this.getMonth() == d.getMonth()) {
                 if (this.getCalendar_s().get(Calendar.DAY_OF_YEAR) == d.getCalendar_s().get(Calendar.DAY_OF_YEAR)) {
                     if ((d.getS_hour() - this.getE_hour()) <= 0) {
+                        //System.out.println(true);
                         return true;
                     }
                 }
             }
         }
-        return true;
+        return false;
     }
 
     public int getMonth() {
